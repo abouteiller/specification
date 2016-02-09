@@ -130,3 +130,46 @@ String representing the vendor name of length less than
 
 \end{tabular}
 \color{black}
+
+\begin{tabular}{|p{0.4\textwidth}|p{0.5\textwidth}|}
+\hline
+\tabularnewline
+\vtop{\hbox{\CorCpp:} 
+\hbox{\hspace*{12mm} \const{SHMEM\_ERR\_ARG}} 
+\hbox{\strut \Fortran:} 
+\hbox{\hspace*{12mm} \const{SHMEM\_ERR\_ARG}}} 
+& An invalid argument value was passed to an operation.\tabularnewline
+\hline
+\vtop{\hbox{\CorCpp:} 
+\hbox{\hspace*{12mm} \const{SHMEM\_ERR\_NOMEM}} 
+\hbox{\strut \Fortran:} 
+\hbox{\hspace*{12mm} \const{SHMEM\_ERR\_NOMEM}}} 
+& Not enough memory to perform the operation.\tabularnewline
+\hline
+\vtop{\hbox{\CorCpp:} 
+\hbox{\hspace*{12mm} \const{SHMEM\_ERR\_UNREACH}} 
+\hbox{\strut \Fortran:} 
+\hbox{\hspace*{12mm} \const{SHMEM\_ERR\_UNREACH}}}
+& Impossible to contact a remote \ac{PE}.\tabularnewline
+\hline
+\vtop{\hbox{\CorCpp:} 
+\hbox{\hspace*{12mm} \const{SHMEM\_ERRHANDLER\_GEXIT}} 
+\hbox{\strut \Fortran:} 
+\hbox{\hspace*{12mm} \const{SHMEM\_ERRHANDLER\_GEXIT}}} 
+& A predefined error handler that calls \textit{shmem\_global\_exit}.
+This is the default error handler.\tabularnewline
+\hline
+\vtop{\hbox{\CorCpp:} 
+\hbox{\hspace*{12mm} \const{SHMEM\_ERRHANDLER\_BREAK}}
+\hbox{\strut \Fortran:} 
+\hbox{\hspace*{12mm} \const{SHMEM\_ERRHANDLER\_BREAK}}} 
+& Predefined error handler that returns from \openshmem operations at the \ac{PE}.\tabularnewline
+\hline
+\vtop{\hbox{\CorCpp:} 
+\hbox{\hspace*{12mm} \const{SHMEM\_ERRHANDLER\_GBREAK}}
+\hbox{\strut \Fortran:} 
+\hbox{\hspace*{12mm} \const{SHMEM\_ERRHANDLER\_GBREAK}}}
+& Predefined error handler that returns from \openshmem operations at all \acp{PE}.\tabularnewline
+\hline
+
+\end{tabular}
