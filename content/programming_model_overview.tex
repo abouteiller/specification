@@ -115,7 +115,18 @@ An overview of the \openshmem routines is described below:
       \textit{lock} releases it.
 \end{enumerate}
 
-\item \textbf{Data Cache Control \textit{(deprecated)}}
+\item \textbf{Error Handling}
+\begin{enumerate}
+  \item \OPR{Notification}: The \ac{PE} reports that some operation has encountered 
+      an error. Errors are reported through error codes returned from \openshmem 
+      operations, and through registered callbacks.
+  \item \OPR{Registration}: The \ac{PE} registers the error callback to be triggered
+      when \openshmem reports an error code.
+  \item \OPR{Interruption}: The \ac{PE} interrupts the normal flow of execution at all 
+      \acp{PE}, causing the error code to be reported at all \acp{PE}.
+\end{enumerate}
+
+\item \textbf{Data Cache Control \textit{(deprecated on cache coherent systems)}}
 \begin{enumerate}
   \item Implementation of mechanisms to exploit the capabilities of hardware cache
       if available.
