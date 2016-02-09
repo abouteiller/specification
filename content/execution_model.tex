@@ -52,3 +52,38 @@ that \ac{PE} next engages in an \openshmem call.
       provide asynchronous one-sided operations, as these have very limited
       performance value for \openshmem programs.
 \end{itemize}
+
+\subsection{Errors}\label{sec:errors}
+
+Most \openshmem operations may report errors. Errors can originate from 
+invalid arguments being passed to \openshmem operations, or from 
+unexpected runtime conditions such as a processor or a network link 
+failure, resource exhaustion, etc. These errors can be observed by 
+considering \openshmem function's return value, or by setting an 
+appropriate \OPR{error handler}. 
+
+Invalid arguments generally result in undefined behavior, however, a 
+debugging version of an \openshmem implementation may check for invalid 
+arguments and report errors.
+
+Unexpected runtime failures may prevent the successful completion of \openshmem operations.
+Implementations are encouraged to report the occurence of failures with an 
+appropriate error code, and strive not to leave any \ac{PE} deadlocked in 
+an operation disrupted by a failure. However, depending on the severity of 
+the failure, it may not always be possible to do so.
+
+When an \openshmem operation has reported an error, it possibly does
+not respect its specification. In particular, as synchronizing operation may 
+have returned before synchronizing, or the data objects could be partially 
+or incorrectly updated. It is also to be noted that, due to the one-sided
+nature of \openshmem operations, when an error is reported at 
+an origin \ac{PE}, incorrect behavior may also be observed at
+the target \acp{PE} without that \ac{PE} reporting an error. It is possible 
+to force an error to be reported at all \acp{PE} by calling the predefined
+error handler \textit{SHMEM\_ERRHANDLER\_GBREAK}.
+
+After an error has been reported, continued operation of the \openshmem 
+library may not be possible. However, the memory allocated for 
+symmetric data objects remains available at the local \ac{PE}, giving the 
+application a chance to verify the correctness of the data, take checkpoints 
+before exiting, or continuing using a resilient communication library.

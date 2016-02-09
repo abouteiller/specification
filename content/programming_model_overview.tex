@@ -136,6 +136,17 @@ An overview of the \openshmem routines is described below:
       \VAR{lock} releases it.
 \end{enumerate}
 
+\item \textbf{Error Handling}
+\begin{enumerate}
+  \item \OPR{Notification}: The \ac{PE} reports that some operation has encountered 
+      an error. Errors are reported through error codes returned from \openshmem 
+      operations, and through registered callbacks.
+  \item \OPR{Registration}: The \ac{PE} registers the error callback to be triggered
+      when \openshmem reports an error code.
+  \item \OPR{Interruption}: The \ac{PE} interrupts the normal flow of execution at all 
+      \acp{PE}, causing the error code to be reported at all \acp{PE}.
+\end{enumerate}
+
 \begin{DeprecateBlock}
 \item \textbf{Data Cache Control}
 \begin{enumerate}

@@ -261,4 +261,33 @@ An integer constant expression corresponding to the
 See Section~\ref{subsec:p2p_intro} for more detail about its use.
 \tabularnewline \hline
 %%
+\LibConstDecl{SHMEM\_ERR\_ARG}
+&
+An invalid argument value was passed to an operation.
+\tabularnewline \hline
+%%
+\LibConstDecl{SHMEM\_ERR\_NOMEM}
+&
+Not enough memory to perform the operation.
+\tabularnewline \hline
+%%
+\LibConstDecl{SHMEM\_ERR\_UNREACH}
+&
+Impossible to contact a remote \ac{PE}.
+\LibConstDecl{SHMEM\_ERRHANDLER\_GEXIT}
+&
+A predefined error handler that calls \textit{shmem\_global\_exit}.
+This is the default error handler.
+\tabularnewline \hline
+%%
+\LibConstDecl{SHMEM\_ERRHANDLER\_BREAK}
+&
+A predefined error handler that returns from \openshmem operations at the \ac{PE}.
+\tabularnewline \hline
+%%
+\LibConstDecl{SHMEM\_ERRHANDLER\_GBREAK}
+& 
+A predefined error handler that returns from \openshmem operations at all \acp{PE}.
+\tabularnewline \hline
+%%
 \end{longtable}
