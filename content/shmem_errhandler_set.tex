@@ -32,6 +32,10 @@ SHMEM_ERRHANDLER_SET(ERRCODE, ERRHANDLER_FN, PARAMS)
     \textit{SHMEM\_ERRHANDLER\_BREAK}, and \textit{SHMEM\_ERRHANDLER\_GBREAK}, 
     in which case the \textit{params} argument is ignored), 
     or user defined functions may be passed in \textit{errhandler\_fn}.
+
+    When an user provided error handler function returns, it has the same 
+    effect as if it had called \textit{SHMEM\_ERRHANDLER\_BREAK} as its last
+    statement. 
 }
 
 \apireturnvalues{ 
