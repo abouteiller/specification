@@ -5,17 +5,17 @@
 \begin{apidefinition}
 
 \begin{Csynopsis}
-void shmem_int_add(int *dest, int value, int pe);
-void shmem_long_add(long *dest, long value, int pe);
-void shmem_longlong_add(long long *dest, long long value, int pe);
+int shmem_int_add(int *dest, int value, int pe);
+int shmem_long_add(long *dest, long value, int pe);
+int shmem_longlong_add(long long *dest, long long value, int pe);
 \end{Csynopsis}
 
 \begin{Fsynopsis}
-INTEGER pe
+INTEGER pe, errcode
 INTEGER*4  value_i4
-CALL SHMEM_INT4_ADD(dest, value_i4, pe)
+errcode = SHMEM_INT4_ADD(dest, value_i4, pe)
 INTEGER*8 value_i8
-CALL SHMEM_INT8_ADD(dest, value_i8, pe)
+errcode = SHMEM_INT8_ADD(dest, value_i8, pe)
 \end{Fsynopsis}
 
 \begin{apiarguments}
@@ -45,7 +45,8 @@ CALL SHMEM_INT8_ADD(dest, value_i8, pe)
 \apitablerow{SHMEM\_INT8\_ADD}{\CONST{8}-byte integer}
 
 \apireturnvalues{
-    None.
+    The function returns \CONST{0} when successful, or one of the 
+    \openshmem error codes defined in Table~\ref{} otherwise.
 }
 
 \apinotes{
