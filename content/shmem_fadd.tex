@@ -5,17 +5,17 @@
 \begin{apidefinition}
 
 \begin{Csynopsis}
-int shmem_int_fadd(int *dest, int value, int pe);
-long shmem_long_fadd(long *dest, long value, int pe);
-long long shmem_longlong_fadd(long long *dest, long long value, int pe);
+int shmem_int_fadd(int *dest, int value, int *old, int pe);
+int shmem_long_fadd(long *dest, long value, long *old, int pe);
+int shmem_longlong_fadd(long long *dest, long long value, long long *old, int pe);
 \end{Csynopsis}
 
 \begin{Fsynopsis}
-INTEGER pe
-INTEGER*4 SHMEM_INT4_FADD, ires_i4, value_i4
-ires_i4 = SHMEM_INT4_FADD(dest, value_i4, pe)
-INTEGER*8 SHMEM_INT8_FADD, ires_i8, value_i8
-ires_i8 = SHMEM_INT8_FADD(dest, value_i8, pe)
+INTEGER pe, errcode
+INTEGER*4 old_i4, value_i4
+errcode = SHMEM_INT4_FADD(dest, value_i4, old_i4, pe)
+INTEGER*8 old_i8, value_i8
+errcode = SHMEM_INT8_FADD(dest, value_i8, old_i8, pe)
 \end{Fsynopsis}
 
 \begin{apiarguments}
@@ -25,6 +25,9 @@ ires_i8 = SHMEM_INT8_FADD(dest, value_i8, pe)
     SYNOPSIS section.}
 \apiargument{IN}{value}{The value to be atomically added to \VAR{dest}.  The
     type of \VAR{value} should match that implied in the SYNOPSIS section.}
+\apiargument{OUT}{old}{The value stored at \VAR{dest} address on the remote \ac{PE}
+    prior to the atomic operation. The type of \VAR{old} should match that implied in 
+    the SYNOPSIS section.}
 \apiargument{IN}{pe}{An integer that indicates the \ac{PE} number on which
     \VAR{dest} is to be updated.  If you are using \Fortran, it must be a default
     integer value.}
@@ -37,7 +40,9 @@ ires_i8 = SHMEM_INT8_FADD(dest, value_i8, pe)
     to \VAR{dest} without the possibility of another atomic operation on the
     \VAR{dest} between the time of the fetch and the update.  These routines add
     \VAR{value} to \VAR{dest} on \VAR{pe} and return the previous contents of
-    \VAR{dest} as an atomic operation.
+    \VAR{dest} as an atomic operation. 
+    The contents that had been at the \VAR{dest} address on the remote \ac{PE}
+    prior to the atomic addition operation is available in \VAR{old}. 
 }
 
 \apidesctable{
@@ -49,9 +54,8 @@ ires_i8 = SHMEM_INT8_FADD(dest, value_i8, pe)
 
 
 \apireturnvalues{
-    The contents that had been at the \VAR{dest} address on the remote \ac{PE}
-    prior to the atomic addition operation.  The data type of the return value is
-    the same as the \VAR{dest}.
+    The function returns \CONST{0} when successful, or one of the 
+    \openshmem error codes defined in Table~\ref{} otherwise.
 }
 
 \apinotes{
