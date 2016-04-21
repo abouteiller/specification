@@ -5,21 +5,21 @@
 \begin{apidefinition}
 
 \begin{Csynopsis}
-void shmem_errhandler_set(int errcode, void (*errhandler_fn)(int errcode, void* params), void* params);
+void shmem_errhandler_set(int errcode, void (*errhandler_fn)(int errcode, int origin_pe, void* user_context), void* user_context);
 \end{Csynopsis}
 
 \begin{Fsynopsis}
 INT ERRCODE
 EXTERNAL ERRHANDLER_FN
-POINTER (PARAMS, POINTEE)
-SHMEM_ERRHANDLER_SET(ERRCODE, ERRHANDLER_FN, PARAMS)
+POINTER (USER_CONTEXT, POINTEE)
+SHMEM_ERRHANDLER_SET(ERRCODE, ERRHANDLER_FN, USER_CONTEXT)
 \end{Fsynopsis}
 
 \begin{apiarguments}
     \apiargument{IN}{errcode}{The error code to which the error handler is 
         attached.}
     \apiargument{IN}{errhandler\_fn}{The error handler function to invoke.}
-    \apiargument{IN}{params}{An opaque parameter passed to the error handler
+    \apiargument{IN}{user_context}{An application parameter passed to the error handler
         when it is invoked with this error code.}
 \end{apiarguments}
 
@@ -27,10 +27,10 @@ SHMEM_ERRHANDLER_SET(ERRCODE, ERRHANDLER_FN, PARAMS)
     This routine sets the error handler attached to the error code passed 
     as argument. Upon encountering an erroneous situation of the type
     described by \textit{errcode}, the error handler function \textit{errhandler\_fn}
-    is called, with the error code, and the provided \textit{params} as arguments. 
+    is called, with the error code, and the provided \textit{user_context} as arguments. 
     Either predefined error handlers (i.e. \textit{SHMEM\_ERRHANDLER\_GEXIT}, 
     \textit{SHMEM\_ERRHANDLER\_BREAK}, and \textit{SHMEM\_ERRHANDLER\_GBREAK}, 
-    in which case the \textit{params} argument is ignored), 
+    in which case the \textit{user_context} argument is ignored), 
     or user defined functions may be passed in \textit{errhandler\_fn}.
 
     When an user provided error handler function returns, it has the same 

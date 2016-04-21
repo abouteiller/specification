@@ -139,8 +139,9 @@ An overview of the \openshmem routines is described below:
 \item \textbf{Error Handling}
 \begin{enumerate}
   \item \OPR{Notification}: The \ac{PE} reports that some operation has encountered 
-      an error. Errors are reported through error codes returned from \openshmem 
-      operations, and through registered callbacks.
+      an error. Errors are reported through registered callbacks executed 
+      from \openshmem operations. The nature of the error is available from 
+      the error code passed as argument to such callbacks.
   \item \OPR{Registration}: The \ac{PE} registers the error callback to be triggered
       when \openshmem reports an error code.
   \item \OPR{Interruption}: The \ac{PE} interrupts the normal flow of execution at all 

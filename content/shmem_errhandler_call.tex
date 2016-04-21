@@ -4,25 +4,27 @@
 
 \begin{apidefinition}
 
+\begin{Csynopsis}
+void shmem_errhandler_call(int errcode, void (*errhandler_fn)(int errcode, int origin_pe, void* user_context));
+\end{Csynopsis}
+
 \begin{Fsynopsis}
 INT ERRCODE
 EXTERNAL ERRHANDLER_FN
-POINTER (PARAMS, POINTEE)
-SHMEM_ERRHANDLER_CALL(ERRCODE, ERRHANDLER_FN, PARAMS)
+SHMEM_ERRHANDLER_CALL(ERRCODE, ERRHANDLER_FN)
 \end{Fsynopsis}
 
 \begin{apiarguments}
     \apiargument{IN}{errcode}{The error code to pass to the error handler.}
     \apiargument{IN}{errhandler\_fn}{The error handler function to invoke.}
-    \apiargument{IN}{params}{An opaque parameter passed to the error handler.}
 \end{apiarguments}
 
 \apidescription{
-    This routine calls the error handler \textit{errhandler\_fn} with 
-    the error code \textit{errcode} and the provided \textit{params} as
-    arguments. Either predefined error handlers (i.e. \textit{SHMEM\_ERRHANDLER\_GEXIT}, 
-    \textit{SHMEM\_ERRHANDLER\_BREAK}, and \textit{SHMEM\_ERRHANDLER\_GBREAK}, 
-    in which case the \textit{params} argument is ignored), 
+    This routine calls the error handler \textit{errhandler\_fn} for 
+    the error code \textit{errcode}, with the local \ac{PE}, and the implicit
+    \textit{user_context} (as set during registration) as arguments. Either predefined 
+    error handlers (i.e. \textit{SHMEM\_ERRHANDLER\_GEXIT}, 
+    \textit{SHMEM\_ERRHANDLER\_BREAK}, and \textit{SHMEM\_ERRHANDLER\_GBREAK}), 
     or user defined functions may be passed in \textit{errhandler\_fn}.
     It is valid to call an error handler from within an error handler function.
 }
