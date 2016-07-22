@@ -20,21 +20,21 @@ SHMEM_ERRHANDLER_CALL(ERRCODE, ERRHANDLER_FN)
 \end{apiarguments}
 
 \apidescription{
-    This routine calls the error handler \textit{errhandler\_fn} for 
+    This routine calls the error handler \textit{errhandler\_fn} for
     the error code \textit{errcode}, with the local \ac{PE}, and the implicit
-    \textit{user_context} (as set during registration) as arguments. Either predefined 
-    error handlers (i.e. \textit{SHMEM\_ERRHANDLER\_GEXIT}, 
-    \textit{SHMEM\_ERRHANDLER\_BREAK}, and \textit{SHMEM\_ERRHANDLER\_GBREAK}), 
+    \textit{user\_context} (as set during registration) as arguments. Either predefined
+    error handlers (i.e. \textit{SHMEM\_ERRHANDLER\_GEXIT},
+    \textit{SHMEM\_ERRHANDLER\_BREAK}, and \textit{SHMEM\_ERRHANDLER\_GBREAK}),
     or user defined functions may be passed in \textit{errhandler\_fn}.
     It is valid to call an error handler from within an error handler function.
 }
 
-\apireturnvalues{ 
-    None. 
+\apireturnvalues{
+    None.
 }
 
-\apinotes{ 
-    None. 
+\apinotes{
+    None.
 }
 
 \end{apidefinition}
