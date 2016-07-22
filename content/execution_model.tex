@@ -40,7 +40,7 @@ that \ac{PE} next engages in an \openshmem call.
   \item An \openshmem implementation for hardware that does not provide
       asynchronous communication capabilities may require a software progress
       thread in order to process remotely-issued communication requests without
-      explicit program calls to the \openshmem library.  
+      explicit program calls to the \openshmem library.
   \item High performance implementations of \openshmem are expected to leverage
       hardware offload capabilities and provide asynchronous one-sided
       communication without software assistance.
@@ -71,35 +71,35 @@ will \OPR{invalidate} the atomicity guarantees.
 
 \subsection{Errors}\label{sec:errors}
 
-Most \openshmem operations may report errors. Errors can originate from 
-passing invalid arguments to \openshmem operations, or from 
-unexpected runtime conditions, such as a resource exhaustion, a processor 
-or network link failure, etc. These failures can be observed by setting an 
-appropriate \OPR{error handler} for the error code representing the 
-considered type of failure. 
+Most \openshmem operations may report errors. Errors can originate from
+passing invalid arguments to \openshmem operations, or from
+unexpected runtime conditions, such as a resource exhaustion, a processor
+or network link failure, etc. These errors can be observed by setting an
+appropriate \OPR{error handler} for the error code representing the
+considered type of failure.
 
-Invalid arguments generally result in undefined behavior, however, a 
-debugging version of an \openshmem implementation may check for invalid 
+Invalid arguments generally result in undefined behavior, however, a
+debugging version of an \openshmem implementation may check for invalid
 arguments and report errors.
 
-Unexpected runtime failures may prevent the successful completion of \openshmem 
-operations. Implementations are encouraged to report the occurence of failures 
-with an appropriate error code, and strive not to leave any \ac{PE} deadlocked 
-in an operation disrupted by a failure. However, depending on the severity of 
+Unexpected runtime failures may prevent the successful completion of \openshmem
+operations. Implementations are encouraged to report the occurence of failures
+with an appropriate error code, and strive not to leave any \ac{PE} deadlocked
+in an operation disrupted by a failure. However, depending on the severity of
 the failure, it may not always be possible to do so.
 
 When an \openshmem implementation has reported an error, operations possibly do
-not respect their specification. In particular, a synchronizing operation may 
-return before synchronizing, or the data objects could be partially 
+not respect their specification. In particular, a synchronizing operation may
+return before synchronizing, or the data objects could be partially
 or incorrectly updated. It is also to be noted that, due to the one-sided
-nature of \openshmem operations, when an error is reported at 
+nature of \openshmem operations, when an error is reported at
 an origin \ac{PE}, incorrect behavior may also be observed at
-the target \acp{PE} without that \ac{PE} reporting an error. It is possible 
+the target \acp{PE} without that \ac{PE} reporting an error. It is possible
 to force an error to be reported at all \acp{PE} by calling the predefined
 error handler \textit{SHMEM\_ERRHANDLER\_GBREAK}.
 
-After an error has been reported, continued use of the \openshmem 
-library may not be possible. However, the memory allocated for 
-symmetric data objects remains available at the local \ac{PE}, giving the 
-application a chance to verify the correctness of the data, take checkpoints 
+After an error has been reported, communicating with the \openshmem
+library may not be possible. However, the memory allocated for
+symmetric data objects remains available at the local \ac{PE}, giving the
+application a chance to verify the correctness of the data, take checkpoints
 before exiting, or continuing using a resilient communication library.
