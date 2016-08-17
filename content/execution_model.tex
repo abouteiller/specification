@@ -58,24 +58,24 @@ that \ac{PE} next engages in an \openshmem call.
 Most \openshmem operations may report errors. Errors can originate from
 passing invalid arguments to \openshmem operations, or from
 unexpected runtime conditions, such as a resource exhaustion, a processor
-or network link failure, etc. These errors can be observed by setting an
+or network link fault, etc. These errors can be observed by setting an
 appropriate \OPR{error handler} for the error code representing the
-considered type of failure.
+considered type of fault.
 
 Invalid arguments generally result in undefined behavior, however, a
 debugging version of an \openshmem implementation may check for invalid
 arguments and report errors.
 
-Unexpected runtime failures may prevent the successful completion of \openshmem
-operations. Implementations are encouraged to report the occurence of failures
+Unexpected runtime faults may prevent the successful completion of \openshmem
+operations. Implementations are encouraged to report the occurrence of faults
 with an appropriate error code, and strive not to leave any \ac{PE} deadlocked
-in an operation disrupted by a failure. However, depending on the severity of
-the failure, it may not always be possible to do so.
+in an operation disrupted by a fault. However, depending on the severity of
+the fault, it may not always be possible to do so.
 
 When an \openshmem implementation has reported an error, operations possibly do
 not respect their specification. In particular, a synchronizing operation may
 return before synchronizing, or the data objects could be partially
-or incorrectly updated. It is also to be noted that, due to the one-sided
+or incorrectly updated. Due to the one-sided
 nature of \openshmem operations, when an error is reported at
 an origin \ac{PE}, incorrect behavior may also be observed at
 the target \acp{PE} without that \ac{PE} reporting an error. It is possible
