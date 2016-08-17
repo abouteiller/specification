@@ -82,8 +82,7 @@ An overview of the \openshmem routines is described below:
 \item \textbf{Synchronization and Ordering}
 \begin{enumerate}
   \item \OPR{Fence}: The \ac{PE} calling fence ensures ordering of   
- \newtext{ \PUT, AMOs, and memory store routines}
- \oldtext{ remote access operations and stores}
+  \PUT, AMO, and memory store operations
   to symmetric data objects with respect to a specific
       destination \ac{PE}. 
   \item \OPR{Quiet}: The \ac{PE} calling quiet ensures completion of remote access
@@ -116,7 +115,19 @@ An overview of the \openshmem routines is described below:
       \textit{lock} releases it.
 \end{enumerate}
 
-\item \textbf{Data Cache Control \textit{(deprecated on cache coherent systems)}}
+\item \textbf{Error Handling}
+\begin{enumerate}
+  \item \OPR{Notification}: The \ac{PE} reports that some operation has encountered 
+      an error. Errors are reported through registered callbacks executed 
+      from \openshmem operations. The nature of the error is available from 
+      the error code passed as argument to such callbacks.
+  \item \OPR{Registration}: The \ac{PE} registers the error callback to be triggered
+      when \openshmem reports an error code.
+  \item \OPR{Interruption}: The \ac{PE} interrupts the normal flow of execution at all 
+      \acp{PE}, causing the error code to be reported at all \acp{PE}.
+\end{enumerate}
+
+\item \textbf{Data Cache Control \textit{(deprecated)}}
 \begin{enumerate}
   \item Implementation of mechanisms to exploit the capabilities of hardware cache
       if available.

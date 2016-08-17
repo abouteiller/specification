@@ -1,0 +1,40 @@
+\apisummary{
+    This routine calls an error handler.
+}
+
+\begin{apidefinition}
+
+\begin{Csynopsis}
+void shmem_errhandler_call(int errcode, void (*errhandler_fn)(int errcode, int origin_pe, void* user_context));
+\end{Csynopsis}
+
+\begin{Fsynopsis}
+INT ERRCODE
+EXTERNAL ERRHANDLER_FN
+SHMEM_ERRHANDLER_CALL(ERRCODE, ERRHANDLER_FN)
+\end{Fsynopsis}
+
+\begin{apiarguments}
+    \apiargument{IN}{errcode}{The error code to pass to the error handler.}
+    \apiargument{IN}{errhandler\_fn}{The error handler function to invoke.}
+\end{apiarguments}
+
+\apidescription{
+    This routine calls the error handler \textit{errhandler\_fn} for
+    the error code \textit{errcode}, with the local \ac{PE}, and the implicit
+    \textit{user\_context} (as set during registration) as arguments. Either predefined
+    error handlers (i.e. \textit{SHMEM\_ERRHANDLER\_GEXIT},
+    \textit{SHMEM\_ERRHANDLER\_BREAK}, and \textit{SHMEM\_ERRHANDLER\_GBREAK}),
+    or user defined functions may be passed in \textit{errhandler\_fn}.
+    It is valid to call an error handler from within an error handler function.
+}
+
+\apireturnvalues{
+    None.
+}
+
+\apinotes{
+    None.
+}
+
+\end{apidefinition}
