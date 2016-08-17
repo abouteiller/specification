@@ -1,5 +1,5 @@
 \apisummary{
-    This routine changes the handler invoked when reporting an error.
+    This routine sets the handler invoked when reporting an error.
 }
 
 \begin{apidefinition}
@@ -24,7 +24,7 @@ SHMEM_ERRHANDLER_SET(ERRCODE, ERRHANDLER_FN, USER_CONTEXT)
 \end{apiarguments}
 
 \apidescription{
-    This routine sets the error handler attached to the error code passed
+    This routine sets the error handler for the error code passed
     as argument. Upon encountering an erroneous situation of the type
     described by \textit{errcode}, the error handler function \textit{errhandler\_fn}
     is called, with the error code, and the provided \textit{user\_context} as arguments.
@@ -32,10 +32,6 @@ SHMEM_ERRHANDLER_SET(ERRCODE, ERRHANDLER_FN, USER_CONTEXT)
     \textit{SHMEM\_ERRHANDLER\_BREAK}, and \textit{SHMEM\_ERRHANDLER\_GBREAK},
     in which case the \textit{user\_context} argument is ignored),
     or user defined functions may be passed in \textit{errhandler\_fn}.
-
-    When an user provided error handler function returns, it has the same
-    effect as if it had called \textit{SHMEM\_ERRHANDLER\_BREAK} as its last
-    statement.
 }
 
 \apireturnvalues{

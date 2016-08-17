@@ -27,6 +27,10 @@ SHMEM_ERRHANDLER_CALL(ERRCODE, ERRHANDLER_FN)
     \textit{SHMEM\_ERRHANDLER\_BREAK}, and \textit{SHMEM\_ERRHANDLER\_GBREAK}),
     or user defined functions may be passed in \textit{errhandler\_fn}.
     It is valid to call an error handler from within an error handler function.
+    
+    When an user provided error handler function returns, it has the same
+    effect as if it had called \textit{SHMEM\_ERRHANDLER\_BREAK} as its last
+    statement.
 }
 
 \apireturnvalues{
