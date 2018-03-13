@@ -8,13 +8,6 @@
 void shmem_errhandler_set(int errcode, void (*errhandler_fn)(int errcode, int origin_pe, void* user_context), void* user_context);
 \end{Csynopsis}
 
-\begin{Fsynopsis}
-INT ERRCODE
-EXTERNAL ERRHANDLER_FN
-POINTER (USER_CONTEXT, POINTEE)
-SHMEM_ERRHANDLER_SET(ERRCODE, ERRHANDLER_FN, USER_CONTEXT)
-\end{Fsynopsis}
-
 \begin{apiarguments}
     \apiargument{IN}{errcode}{The error code to which the error handler is
         attached.}

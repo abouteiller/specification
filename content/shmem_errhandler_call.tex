@@ -8,12 +8,6 @@
 void shmem_errhandler_call(int errcode, void (*errhandler_fn)(int errcode, int origin_pe, void* user_context));
 \end{Csynopsis}
 
-\begin{Fsynopsis}
-INT ERRCODE
-EXTERNAL ERRHANDLER_FN
-SHMEM_ERRHANDLER_CALL(ERRCODE, ERRHANDLER_FN)
-\end{Fsynopsis}
-
 \begin{apiarguments}
     \apiargument{IN}{errcode}{The error code to pass to the error handler.}
     \apiargument{IN}{errhandler\_fn}{The error handler function to invoke.}
@@ -27,7 +21,7 @@ SHMEM_ERRHANDLER_CALL(ERRCODE, ERRHANDLER_FN)
     \textit{SHMEM\_ERRHANDLER\_BREAK}, and \textit{SHMEM\_ERRHANDLER\_GBREAK}),
     or user defined functions may be passed in \textit{errhandler\_fn}.
     It is valid to call an error handler from within an error handler function.
-    
+
     When an user provided error handler function returns, it has the same
     effect as if it had called \textit{SHMEM\_ERRHANDLER\_BREAK} as its last
     statement.

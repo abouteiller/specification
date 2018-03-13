@@ -8,30 +8,26 @@
 int shmem_errhandler_poll(void);
 \end{Csynopsis}
 
-\begin{Fsynopsis}
-LOGICAL SHMEM_ERRHANDLER_POLL()
-\end{Fsynopsis}
-
 \begin{apiarguments}
 \end{apiarguments}
 
 \apidescription{
-    This routine verifies if an \openshmem error handler (user-defined or predefined) 
-    has been invoked at the local \ac{PE}. The error handler may have been invoked 
-    before, or during the call. When an error is pending (for example, as the result 
-    of another \ac{PE} invoking the \textit{SHMEM\_ERRHANDLER\_GBREAK} error handler), 
+    This routine verifies if an \openshmem error handler (user-defined or predefined)
+    has been invoked at the local \ac{PE}. The error handler may have been invoked
+    before, or during the call. When an error is pending (for example, as the result
+    of another \ac{PE} invoking the \textit{SHMEM\_ERRHANDLER\_GBREAK} error handler),
     the associated error handler is invoked before the call returns. The operation is
     not synchronizing, that is, a \texit{false} return value does not guarantee that
     no \ac{PE} invoked \textit{SHMEM\_ERRHANDLER\_GBREAK}.
 }
 
-\apireturnvalues{ 
+\apireturnvalues{
     Returns \textit{true} if an \openshmem error handler has been locally invoked
-    (during or before the \textit{shmem_errhandler_poll} call), \textit{false} 
+    (during or before the \textit{shmem_errhandler_poll} call), \textit{false}
     otherwise.
 }
 
-\apinotes{ 
+\apinotes{
     None.
 }
 

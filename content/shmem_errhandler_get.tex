@@ -8,13 +8,6 @@
 void shmem_errhandler_get(int errcode, void (*errhandler_fn)(int errcode, int origin_pe, void* user_context), void* user_context);
 \end{Csynopsis}
 
-\begin{Fsynopsis}
-INT ERRCODE
-EXTERNAL ERRHANDLER_FN
-POINTER (USER_CONTEXT, POINTEE)
-SHMEM_ERRHANDLER_GET(ERRCODE, ERRHANDLER_FN, USER_CONTEXT)
-\end{Fsynopsis}
-
 \begin{apiarguments}
     \apiargument{IN}{errcode}{The error code to which the error handler is
         attached.}
@@ -24,9 +17,9 @@ SHMEM_ERRHANDLER_GET(ERRCODE, ERRHANDLER_FN, USER_CONTEXT)
 \end{apiarguments}
 
 \apidescription{
-    This routine gets the error handler and application parameter set for 
+    This routine gets the error handler and application parameter set for
     the error code passed
-    as argument. When the returned \textit{errhandler\_fn} is one of the 
+    as argument. When the returned \textit{errhandler\_fn} is one of the
     predefined error handlers (i.e. \textit{SHMEM\_ERRHANDLER\_GEXIT},
     \textit{SHMEM\_ERRHANDLER\_BREAK}, and \textit{SHMEM\_ERRHANDLER\_GBREAK}), the \textit{user\_context} argument is
     set to NULL.
